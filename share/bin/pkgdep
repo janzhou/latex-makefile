@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+DEPS="make texlive-full inotify-tools biber bibtool poppler-utils python-pygments"
+
+if test -f /etc/debian_version; then
+    echo "pkgdep: installing dependencies - $DEPS"
+    sudo apt update
+    sudo apt install $DEPS -y
+else
+    echo "pkgdep: can't support current system $(uname -s)"
+fi

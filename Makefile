@@ -1,6 +1,7 @@
 PDF_FILES = $(shell share/bin/allpdfs)
 ALL_FILES = $(shell find -name '*.tex' -or -name '*.sty' -or -name '*.cls' -or -name '*.bib' -or -name '*.bst' -or -name '*.jpg' -or -name '*.png' -or -name '*.eps' | sed -e 's/ /\ /g')
 MAKEFILES = $(shell share/bin/allmakefiles)
+PWD=$(shell pwd)
 
 -include .configure
 
@@ -26,6 +27,7 @@ multicore:
 
 .makefile:
 	mkdir -p .makefile
+	share/bin/pkgdep
 
 .makefile/%.makefile: .makefile share/makefile.sed
 	sed -e "s/SED/$*/g" share/makefile.sed > $@
